@@ -109,12 +109,14 @@ class Request extends IlluminateRequest
     /**
      * Get searchable column indexes
      *
+     * $columns array(BaseEngine->protected $columns)
+     *
      * @return array
      */
-    public function searchableColumnIndex()
+    public function searchableColumnIndex($columns)
     {
         $searchable = [];
-        for ($i = 0, $c = count($this->get('columns')); $i < $c; $i++) {
+        for ($i = 0, $c = min(count($columns), count($this->get('columns'))); $i < $c; $i++) {
             if ($this->isColumnSearchable($i, false)) {
                 $searchable[] = $i;
             }
