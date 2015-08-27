@@ -82,7 +82,7 @@ class QueryBuilderEngine extends BaseEngine implements DataTableEngine
         $this->query->where(
             function ($query) {
                 $keyword = $this->setupKeyword($this->request->keyword());
-                foreach ($this->request->searchableColumnIndex() as $index) {
+                foreach ($this->request->searchableColumnIndex($this->columns) as $index) {
                     $column = $this->setupColumnName($index);
 
                     if (isset($this->columnDef['filter'][$column])) {
